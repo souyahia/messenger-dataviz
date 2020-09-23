@@ -1,0 +1,20 @@
+{
+  "name": "messenger-dataviz",
+  "version": "1.0.0",
+  "description": "Messenger datavisualization tool.",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [
+    "messenger",
+    "dataviz",
+    "data",
+    "visualisation",
+    "visualization"
+  ],
+  "author": "Samy Ouyahia",
+  "license": "ISC",
+  "dependencies": {
+    "mkdirp": "^1.0.4",
+    "rimraf": "^3.0.2"
+  }
+}
