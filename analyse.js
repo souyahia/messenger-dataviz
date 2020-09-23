@@ -234,9 +234,9 @@ function analyseData(data) {
     if (message.type === 'Call') {
       result.calls.count.total++;
       result.calls.count[message.sender_name]++;
-      if (message.missed) {
+      if (message.call_duration === 0) {
         result.calls.count.unanswered++;
-      } else if (message.call_duration > 0) {
+      } else {
         let temp = result.calls.averageLength * result.calls._currentCount;
         temp += message.call_duration;
         result.calls._currentCount++;
