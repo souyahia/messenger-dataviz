@@ -58,16 +58,25 @@ globalRows.push([`Emojis sent by ${PARTICIPANT_1}`, data.text.emojis.count[PARTI
 console.log('Creating global.csv...');
 fs.writeFileSync(`./${OUTPUT_DIR}/global.csv`, getCSVStr(globalRows));
 
-// Hours
-console.log('Processing hours data...');
-let hoursRows = [];
-hoursRows.push(['Hour', 'Number of messages sent']);
+// Hours-Week
+console.log('Processing hours-week data...');
+let hoursWeekRows = [];
+hoursWeekRows.push(['Hour', 'Number of messages sent', '', 'Day of the week', 'Number of messages sent']);
 for (let i=0; i<data.timestamps.hours.length; i++) {
-  hoursRows.push([`${i}h`, data.timestamps.hours[i]]);
+  const row = [`${i}h`, data.timestamps.hours[i], ''];
+  if (i === 0) { row.push('Monday', data.timestamps.week[i]); }
+  else if (i === 1) { row.push('Tuesday', data.timestamps.week[i]); }
+  else if (i === 2) { row.push('Wednesday', data.timestamps.week[i]); }
+  else if (i === 3) { row.push('Thursday', data.timestamps.week[i]); }
+  else if (i === 4) { row.push('Friday', data.timestamps.week[i]); }
+  else if (i === 5) { row.push('Saturday', data.timestamps.week[i]); }
+  else if (i === 6) { row.push('Sunday', data.timestamps.week[i]); }
+  else { row.push('', ''); }
+  hoursWeekRows.push(row);
 }
 
-console.log('Creating hours.csv...');
-fs.writeFileSync(`./${OUTPUT_DIR}/hours.csv`, getCSVStr(hoursRows));
+console.log('Creating hours-week.csv...');
+fs.writeFileSync(`./${OUTPUT_DIR}/hours-week.csv`, getCSVStr(hoursWeekRows));
 
 // Days
 console.log('Processing days data...');

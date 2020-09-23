@@ -43,6 +43,7 @@ const result = {
   },
   timestamps: {
     hours: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    week: [0, 0, 0, 0, 0, 0, 0],
     days: {
       values: {}
     },
@@ -148,6 +149,8 @@ function analyseData(data) {
     // Timestamps
     const date = new Date(message.timestamp_ms);
     result.timestamps.hours[date.getHours()]++;
+    const index = (date.getDay() === 0 ? 7 : date.getDay()) - 1;
+    result.timestamps.week[index]++;
     let day = `${date.getDate()}`;
     if (day.length === 1) { day = '0' + day; }
     let month = `${date.getMonth()+1}`;
